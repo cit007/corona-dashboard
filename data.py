@@ -27,9 +27,9 @@ def make_country_df(condition, country):
     country_df = pd.read_csv(f"data/time_{condition}.csv")
     # get row info : loc[df[true]]
     country_df = country_df.loc[country_df["Country/Region"] == country]
-    country_sum = country_df.drop(columns=["Province/State", "Country/Region", "Lat", "Long"]).sum(
+    country_sum_df = country_df.drop(columns=["Province/State", "Country/Region", "Lat", "Long"]).sum(
     ).reset_index(name=f"{condition}").rename(columns={"index": "date"})
-    return country_sum
+    return country_sum_df
 
 
 def make_all_conditions_country_df(country):
@@ -51,4 +51,4 @@ total_sum = daily_total_df.sum().reset_index().rename(
 # by country
 daily_country_df = daily_all[["Country_Region",
                               "Confirmed", "Deaths", "Recovered"]]
-country_sum = daily_country_df.groupby("Country_Region").sum().reset_index()
+country_sum_df = daily_country_df.groupby("Country_Region").sum().reset_index()
