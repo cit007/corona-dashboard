@@ -45,7 +45,7 @@ def make_all_conditions_country_df(country):
 
 # by all
 daily_total_df = daily_all[["Confirmed", "Deaths", "Recovered"]]
-total_sum = daily_total_df.sum().reset_index().rename(
+total_sum_df = daily_total_df.sum().reset_index().rename(
     columns={"index": "condition"})
 
 # by country
